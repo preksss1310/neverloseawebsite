@@ -122,3 +122,23 @@ body {
 
 .empty { color: #a99a8c; text-align: center; padding: 50px 10px; font-size: 15px; line-height: 1.6; }
 .count { color: #8d7e72; font-size: 12.5px; margin-bottom: 14px; }
+
+.edit { background: none; border: none; color: #6f6659; cursor: pointer; font-size: 12px; text-decoration: underline; font-family: inherit; }
+.edit:hover { color: #1c1612; }
+
+.fbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: -4px 0 16px; font-size: 13.5px; color: #6f6659; }
+.fbar .einput { width: 220px; }
+
+.editor { background: #f6ecdb; border-radius: 6px; padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+.elabel { font-size: 11px; letter-spacing: 0.6px; font-weight: 700; color: #6f6659; margin-top: 4px; }
+.echips { display: flex; flex-wrap: wrap; gap: 8px; }
+.echip { border: 1px solid #dccfb8; background: #fffaf1; border-radius: 999px; padding: 6px 12px; font-size: 13px; cursor: pointer; font-family: inherit; color: #1c1612; }
+.echip.on { background: #1c1612; color: #fff; border-color: #1c1612; }
+.einput { border: 1px solid #dccfb8; background: #fffaf1; border-radius: 6px; padding: 9px 11px; font-size: 14px; font-family: inherit; color: #1c1612; width: 100%; }
+.erow { display: flex; gap: 8px; align-items: center; }
+.erow.end { justify-content: flex-end; margin-top: 6px; }
+.ebtn { border: 1px solid #dccfb8; background: #fffaf1; border-radius: 6px; padding: 8px 14px; font-size: 13.5px; cursor: pointer; font-family: inherit; color: #1c1612; }
+.ebtn:hover { border-color: #1c1612; }
+.ebtn.dark { background: #1c1612; color: #fff; border-color: #1c1612; }
+.ebtn.danger { background: #ff3b30; color: #fff; border-color: #ff3b30; }
+.ebtn.ghost { background: transparent; }
