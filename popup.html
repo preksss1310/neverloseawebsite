@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>neverloseawebsite</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="card">
+    <header class="top">
+      <div class="logo">neverlos<span>e</span>awebsite <span class="dots">&bull;&bull;&bull;</span></div>
+      <div class="status"><span class="dot"></span> <span id="statusText">Active Page Captured</span> <span class="bolt">&#9889;</span></div>
+    </header>
+
+    <div id="mainView">
+      <section class="page">
+        <h1 id="pageTitle">Loading...</h1>
+        <span class="pill" id="pageDomain"></span>
+      </section>
+
+      <section class="block">
+        <div class="label">AI DETECTED</div>
+        <div class="chips" id="tagChips"></div>
+      </section>
+
+      <section class="block">
+        <div class="label strong">HOW DO YOU WANNA REMEMBER IT?</div>
+        <div class="chips" id="reasonChips">
+          <button class="chip reason" data-reason="Steal this vibe">&#128161; "Steal this vibe"</button>
+          <button class="chip reason" data-reason="Visual Reference">&#127912; Visual Reference</button>
+          <button class="chip reason" data-reason="Rabbit Hole">&#128007; Rabbit Hole</button>
+        </div>
+        <input id="note" class="note" type="text" placeholder="Or tap to type a note..." maxlength="200" />
+      </section>
+
+      <section class="actions">
+        <button id="lockBtn" class="lock">Lock in Memory &#128204;</button>
+        <div class="foot" id="footText">Saved on your device only &bull; Ready to recall anytime</div>
+        <a href="#" id="searchLink" class="searchlink">Search my saved websites</a>
+      </section>
+    </div>
+
+    <div id="folderView" hidden>
+      <section class="page folderhead">
+        <div>
+          <h1 id="folderTitle">Locked in &#10003;</h1>
+          <div class="sub" id="folderSub">Want to put it in a folder?</div>
+        </div>
+      </section>
+
+      <section class="block" id="folderChoices">
+        <div class="label strong">YOUR FOLDERS</div>
+        <div class="chips" id="folderChips"></div>
+        <div class="hint" id="folderHint"></div>
+
+        <div class="label strong newlabel">OR MAKE A NEW ONE</div>
+        <input id="newFolder" class="note" type="text" placeholder="Folder name, e.g. Design ideas" maxlength="30" />
+      </section>
+
+      <section class="actions" id="folderActions">
+        <button id="addFolderBtn" class="lock">Add to new folder &#128193;</button>
+        <a href="#" id="skipFolder" class="searchlink">Skip for now</a>
+      </section>
+    </div>
+  </div>
+
+  <script src="shared.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
