@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "neverloseawebsite",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Save any website in one tap with a note on why. Sort it into folders and find it again in seconds.",
   "permissions": ["storage", "activeTab", "scripting"],
   "action": {

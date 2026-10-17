@@ -142,3 +142,6 @@ body {
 .ebtn.dark { background: #1c1612; color: #fff; border-color: #1c1612; }
 .ebtn.danger { background: #ff3b30; color: #fff; border-color: #ff3b30; }
 .ebtn.ghost { background: transparent; }
+.fbar .ebtn.ghost { color: #fdf6ea; border-color: #5a4a3d; }
+.fbar .ebtn.ghost:hover { border-color: #fdf6ea; }
+.fbar span { color: #cdbdab; }
