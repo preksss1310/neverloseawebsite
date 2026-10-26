@@ -4,12 +4,9 @@ A Chrome extension that saves any website in one tap with a note and tags, sorts
 
 Website: https://neverloseawebsite.me
 
-## Install (about 1 minute)
+## Install
 
-1. Download this repo: Code, then Download ZIP. Unzip it.
-2. In Chrome, open `chrome://extensions` and turn on Developer mode.
-3. Click Load unpacked and choose the unzipped folder that contains `manifest.json`.
-4. Pin the extension from the puzzle piece menu.
+Get it from the Chrome Web Store: https://chromewebstore.google.com/detail/neverloseawebsite/dgohoablonkihbfppaafmcgccmpkafag
 
 ## Use it
 
