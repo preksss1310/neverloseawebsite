@@ -92,7 +92,7 @@ function render(list, tokens, ms) {
 
 function editorHtml(s) {
   const tagPool = Array.from(new Set(
-    detectTags((s.title || "") + " " + (s.url || "") + " " + (s.description || "")).concat(draft.tags)
+    detectTags({ title: s.title, url: s.url, description: s.description }).concat(draft.tags)
   ));
   const tagChips = tagPool
     .map((t) => '<button class="echip' + (draft.tags.includes(t) ? " on" : "") + '" data-tag="' + escapeHtml(t) + '">' + escapeHtml(t) + (draft.tags.includes(t) ? " ⭐" : "") + "</button>")

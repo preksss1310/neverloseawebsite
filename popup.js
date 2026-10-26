@@ -17,20 +17,35 @@ async function init() {
   current.url = tab.url;
   current.title = tab.title || cleanDomain(tab.url);
 
-  // Read the page description (only after you click the icon) for better tag detection.
+  // Read a few things from the page (only after you click the icon) so the
+  // suggested tags match what the page is really about. Nothing leaves your device.
+  current.info = {};
   try {
     const [res] = await chrome.scripting.executeScript({
       target: { tabId: tab.id },
       func: () => {
-        const m = document.querySelector('meta[name="description"]') ||
-                  document.querySelector('meta[property="og:description"]');
-        return m ? m.content : "";
+        const meta = (sel) => {
+          const e = document.querySelector(sel);
+          return e ? (e.content || "").trim() : "";
+        };
+        const txt = (e) => (e.innerText || e.textContent || "").replace(/\s+/g, " ").trim().slice(0, 160);
+        return {
+          description: meta('meta[name="description"]') || meta('meta[property="og:description"]'),
+          keywords: meta('meta[name="keywords"]'),
+          siteName: meta('meta[property="og:site_name"]'),
+          ogTitle: meta('meta[property="og:title"]'),
+          articleTags: Array.from(document.querySelectorAll('meta[property="article:tag"]')).map((e) => e.content).slice(0, 6),
+          h1: Array.from(document.querySelectorAll("h1")).slice(0, 2).map(txt),
+          h2: Array.from(document.querySelectorAll("h2")).slice(0, 6).map(txt)
+        };
       }
     });
-    current.description = (res && res.result) || "";
+    const r = res && res.result;
+    current.info = typeof r === "string" ? { description: r } : (r || {});
   } catch (e) {
-    current.description = "";
+    current.info = {};
   }
+  current.description = current.info.description || "";
 
   $("pageTitle").textContent = current.title;
   $("pageDomain").textContent = cleanDomain(current.url);
@@ -60,7 +75,7 @@ async function init() {
     selectedTags = new Set(existing.tags || []);
   }
 
-  const detected = detectTags(current.title + " " + current.url + " " + current.description);
+  const detected = detectTags(Object.assign({}, current.info, { title: current.title, url: current.url }));
   if (!existing) selectedTags = new Set([detected[0]]);
   const all = Array.from(new Set([...detected, ...selectedTags]));
   renderTags(all);
