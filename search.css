@@ -9,7 +9,7 @@ body {
 
 .wrap { max-width: 640px; margin: 0 auto; padding: 60px 20px 80px; }
 
-.brand { color: #fdf6ea; font-weight: 700; font-size: 16px; margin-bottom: 26px; letter-spacing: -0.2px; }
+.brand { color: #fdf6ea; font-weight: 700; font-size: 16px; margin-bottom: 26px; letter-spacing: -0.2px; font-kerning: normal; text-rendering: optimizeLegibility; }
 .brand span { font-weight: 400; }
 
 .searchbox { position: relative; margin-bottom: 26px; }

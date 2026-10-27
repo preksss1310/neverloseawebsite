@@ -18,7 +18,7 @@ body {
   border-bottom: 1px solid #eadfcc;
   font-size: 13px;
 }
-.logo { font-weight: 700; font-size: 15px; letter-spacing: -0.2px; }
+.logo { font-weight: 700; font-size: 15px; letter-spacing: -0.2px; font-kerning: normal; text-rendering: optimizeLegibility; }
 .logo span { font-weight: 400; }
 .logo .dots { color: #ff3b30; font-size: 9px; letter-spacing: 1px; vertical-align: middle; }
 .status { color: #6f6659; font-size: 12px; display: flex; align-items: center; gap: 5px; }
@@ -118,4 +118,4 @@ body {
 .chip.folder.on { background: #14100c; color: #fff; border-color: #14100c; }
 .hint { font-size: 12.5px; color: #6f6659; margin-bottom: 12px; }
 .paywall { margin-top: 10px; font-size: 12.5px; color: #b3261e; line-height: 1.4; }
-.searchlink { display: inline-block; margin-top: 10px; font-size: 12px; color: #1c1612; text-decoration: underline; }
+.searchlink { display: inline-block; margin-top: 10px; font-size: 14px; font-weight: 700; color: #1c1612; text-decoration: underline; text-underline-offset: 3px; }

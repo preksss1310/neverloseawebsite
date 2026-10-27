@@ -5,7 +5,7 @@ a{color:inherit}
 .wrap{max-width:880px;margin:0 auto;padding:0 20px}
 header{border-bottom:1px solid var(--line)}
 header .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
-.logo{font-weight:700;font-size:17px;letter-spacing:-.2px;text-decoration:none}
+.logo{font-weight:700;font-size:17px;letter-spacing:-.2px;text-decoration:none;font-kerning:normal;text-rendering:optimizeLegibility}
 .logo span{font-weight:400}
 .logo i{color:var(--red);font-style:normal;font-size:10px;letter-spacing:1px;margin-left:4px}
 nav a{font-size:14px;color:var(--mute);text-decoration:none;margin-left:20px}
