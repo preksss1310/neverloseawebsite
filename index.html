@@ -87,6 +87,12 @@ h2.sec{font-size:clamp(28px,4vw,40px);letter-spacing:-.03em;font-weight:800;marg
 .pl{list-style:none}
 .pl li{font-size:14.5px;color:var(--mute);padding:5px 0 5px 22px;position:relative}
 .pl li:before{content:'\2713';position:absolute;left:0;color:var(--accent);font-weight:800}
+.planrow{display:flex;justify-content:space-between;align-items:center;padding:13px 16px;border:1px solid rgba(255,255,255,.22);border-radius:12px;margin-top:10px;color:var(--bg);text-decoration:none;transition:background .2s,transform .2s,border-color .2s}
+.planrow:hover{background:rgba(255,255,255,.09);transform:translateX(3px);border-color:rgba(255,255,255,.4)}
+.planrow .pname{font-weight:800;font-size:15.5px;letter-spacing:.01em}
+.planrow .pprice{font-weight:800;font-size:16px;white-space:nowrap}
+.planrow .pper{font-weight:500;font-size:13px;color:#cfc4b3}
+.proper{color:#cfc4b3;font-size:14px;margin-bottom:6px}
 .pricenote{margin-top:20px;font-size:14.5px;color:var(--faint)}
 .faq{max-width:760px}
 .q{border-bottom:1px solid var(--line);padding:20px 0}
@@ -220,17 +226,20 @@ footer{border-top:1px solid var(--line);margin-top:20px}
       <ul class="pl"><li>10 website saves</li><li>notes and auto-suggested tags</li><li>folders and instant search</li><li>everything stays on your device</li></ul>
     </div>
     <div class="pricecard dark reveal d2">
-      <div class="plan">pro</div><div class="amount">$5</div><div class="per">per month &middot; or $25/year</div>
-      <ul class="pl"><li>unlimited saves</li><li>everything in free</li><li>support a solo maker</li></ul>
+      <div class="plan">pro</div><div class="proper">unlimited saves. pick your plan:</div>
+      <a class="planrow" href="https://checkout.dodopayments.com/buy/pdt_0NqdBy0LjUSmq40FksO53?quantity=1" target="_blank" rel="noopener"><span class="pname">monthly</span><span class="pprice">$5 <span class="pper">/ month</span></span></a>
+      <a class="planrow" href="https://checkout.dodopayments.com/buy/pdt_0NqdCXe6NSXH8lT1kRfzF?quantity=1" target="_blank" rel="noopener"><span class="pname">3 months</span><span class="pprice">$12 <span class="pper">/ 3 months</span></span></a>
+      <a class="planrow" href="https://checkout.dodopayments.com/buy/pdt_0NqdCvDC6XoGb7OT9UX2P?quantity=1" target="_blank" rel="noopener"><span class="pname">yearly</span><span class="pprice">$25 <span class="pper">/ year</span></span></a>
+      <ul class="pl" style="margin-top:16px"><li>unlimited saves</li><li>everything in free</li><li>support a solo maker</li></ul>
     </div>
   </div>
-  <p class="pricenote reveal">the first version is free to try. paid plans are coming soon.</p>
+  <p class="pricenote reveal">every pro plan includes a license key. paste it into the extension to unlock pro.</p>
 </section>
 
 <section class="wrap section" id="faq">
   <h2 class="sec reveal">questions</h2>
   <div class="faq">
-    <div class="q reveal d1"><b>where is my data stored?</b><p>everything stays on your device.</p></div>
+    <div class="q reveal d1"><b>where is my data stored?</b><p>your saved pages, notes and folders stay on your device. the only exception is an optional pro license key check with our payment provider - details in the <a href="privacy.html">privacy policy</a>.</p></div>
     <div class="q reveal d2"><b>how is this different from bookmarks?</b><p>bookmarks save a link. this saves the link plus why you saved it, and makes both searchable.</p></div>
   </div>
 </section>

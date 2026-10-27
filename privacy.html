@@ -17,7 +17,7 @@
 </div></header>
 <main class="wrap"><div class="doc">
   <h1>Privacy policy</h1>
-  <p>Last updated: 26 October 2026</p>
+  <p>Last updated: 27 October 2026</p>
 
   <h2>The short version</h2>
   <p>neverloseawebsite stores your saved websites only on your own device. We do not collect, send, sell or share your data.</p>
@@ -29,15 +29,20 @@
   <ul>
     <li>No accounts or sign-in.</li>
     <li>No analytics, tracking or advertising inside the extension.</li>
-    <li>No sending your data to any server.</li>
+    <li>No sending your data to any server. The only exception is a Pro license key check with our payment provider, described below.</li>
     <li>Tags are suggested on your device by reading the page you are on, using simple keyword rules. No page content is sent to any AI service.</li>
   </ul>
+
+
+  <h2>If you upgrade to Pro</h2>
+  <p>Pro is paid through Dodo Payments, our payment provider, and works with a license key. When you paste the key into the extension, the extension sends the key to Dodo to activate it, with the label "Chrome extension" so the activation can be recognized, and re-checks the key with its Dodo instance ID about once a day. Your saved websites, notes, tags and folders are never sent. The extension itself never handles card details. If a key stops being valid, Pro turns off at the next check. You can read more in <a href="https://dodopayments.com/privacy">Dodo's privacy policy</a>.</p>
 
   <h2>Why the extension needs permissions</h2>
   <ul>
     <li><b>storage</b>: to keep your saved websites and folders on your device.</li>
     <li><b>activeTab</b>: to read the title and address of the page you are on, only when you click the icon.</li>
     <li><b>scripting</b>: to read the page's meta description, meta keywords and main headings, only when you click the icon, so tags that match the page can be suggested. This text is used on your device and is never sent anywhere.</li>
+      <li><b>live.dodopayments.com (optional, Pro only)</b>: to activate and re-check your Pro license key. The extension asks your permission once before the first call. Nothing else is sent.</li>
   </ul>
 
   <h2>This website</h2>
