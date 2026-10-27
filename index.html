@@ -1,64 +1,317 @@
 <!DOCTYPE html>
 <html lang="en">
+<script>document.documentElement.classList.add("js")</script>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>neverloseawebsite | Save any website in one tap</title>
-<meta name="description" content="A Chrome extension that saves any website in one tap with a note and tags, sorts it into folders, and helps you find it again in seconds.">
+<title>neverloseawebsite | save any website in one tap</title>
+<meta name="description" content="a chrome extension that saves any website in one tap with a note and tags, sorts it into folders, and helps you find it again in seconds.">
 <link rel="icon" href="icons/icon48.png">
-<link rel="stylesheet" href="style.css">
 <script>
   (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","z2q0ud1vxc");
 </script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f6efe4;--ink:#211b14;--mute:#5c5347;--faint:#8a7f6f;--accent:#e4572e;--card:#fffdf8;--line:#e9ddc9}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',Helvetica,Arial,sans-serif;line-height:1.55}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 40px}
+nav{position:sticky;top:0;z-index:50;background:rgba(246,239,228,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s}
+nav.scrolled{border-bottom-color:var(--line)}
+.nav-in{max-width:1200px;margin:0 auto;padding:18px 40px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:700;font-size:19px;letter-spacing:-.02em;font-kerning:normal;text-rendering:optimizeLegibility}
+.logo .le{font-weight:400;margin-left:-.03em}
+.logo i{color:#ff3b30;font-style:normal;font-size:12px;letter-spacing:1px;margin-left:4px;vertical-align:2px}
+.navlinks{display:flex;gap:28px;align-items:center;font-size:15px;color:var(--mute)}
+.navlinks a{transition:color .2s}
+.navlinks a:hover{color:var(--ink)}
+.navcta{background:var(--ink);color:var(--bg);padding:10px 20px;border-radius:24px;font-weight:700;font-size:14px;transition:transform .2s,box-shadow .2s}
+.navcta:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(33,27,20,.25)}
+.hero{padding-top:70px;padding-bottom:60px}
+.kicker{font-size:13px;font-weight:800;letter-spacing:.22em;color:var(--accent);margin-bottom:26px}
+h1{font-size:clamp(44px,8vw,88px);line-height:.98;letter-spacing:-.03em;font-weight:900;max-width:900px}
+.witty{margin-top:26px;font-size:20px;color:var(--mute);font-style:italic}
+.sub{margin-top:14px;font-size:18px;line-height:1.55;color:var(--mute);max-width:560px}
+.ctarow{margin-top:30px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.btnp{display:inline-block;white-space:nowrap;background:var(--ink);color:var(--bg);padding:15px 30px;border-radius:30px;font-weight:700;font-size:16px;transition:transform .2s,box-shadow .2s}
+.btnp:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(33,27,20,.28)}
+.btns{display:inline-block;white-space:nowrap;border:1.5px solid var(--ink);padding:14px 28px;border-radius:30px;font-weight:700;font-size:16px;transition:background .2s,color .2s}
+.btns:hover{background:var(--ink);color:var(--bg)}
+.micro{margin-top:14px;font-size:14px;color:var(--faint)}
+.heroimg{padding-bottom:70px}
+.heroimg img{width:100%;border-radius:16px;box-shadow:0 24px 60px rgba(33,27,20,.22);display:block;will-change:transform}
+.problem{background:var(--ink);color:var(--bg);padding:90px 0}
+.pk{font-size:13px;font-weight:800;letter-spacing:.22em;color:#ff8a70;margin-bottom:26px}
+.problem h2{font-size:clamp(34px,5.5vw,64px);line-height:1.02;letter-spacing:-.02em;font-weight:900;max-width:900px}
+.plines{margin-top:34px;font-size:19px;line-height:1.9;color:#cfc4b3}
+.plines b{color:var(--bg)}
+.section{padding-top:80px}
+h2.sec{font-size:clamp(28px,4vw,40px);letter-spacing:-.03em;font-weight:800;margin-bottom:10px}
+.secdesc{color:var(--mute);font-size:17px;margin-bottom:34px;max-width:560px;line-height:1.5}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 24px;transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(33,27,20,.12)}
+.card .ic{font-size:26px;margin-bottom:12px}
+.card h3{font-size:18px;font-weight:800;margin-bottom:8px;letter-spacing:-.01em}
+.card p{font-size:14.5px;line-height:1.5;color:var(--mute)}
+.how{display:flex;gap:56px;align-items:center}
+.howsteps{flex:1}
+.step{display:flex;gap:16px;margin-bottom:26px}
+.stepn{background:var(--accent);color:#fff;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex-shrink:0}
+.step p{font-size:16.5px;line-height:1.45;padding-top:4px}
+.howimg{flex:1.1}
+.howimg img{width:100%;border-radius:16px;box-shadow:0 24px 60px rgba(33,27,20,.22);display:block}
+.recall .demo{margin-top:44px;background:var(--ink);border-radius:20px;padding:44px;display:flex;gap:40px;align-items:center}
+.dleft{flex:1}
+.dq{color:var(--bg);font-size:22px;font-weight:700;line-height:1.4}
+.qsub{color:var(--faint);font-size:14px;margin-top:10px;font-style:italic}
+.dcard{background:var(--bg);border-radius:14px;padding:26px 28px;width:400px;flex-shrink:0;transition:transform .3s}
+.dcard:hover{transform:rotate(-.6deg) scale(1.015)}
+.found{font-size:13px;font-weight:800;letter-spacing:.14em;color:var(--ink)}
+.match{float:right;font-size:12px;font-weight:800;color:var(--accent);letter-spacing:.08em}
+.dname{font-size:24px;font-weight:900;margin-top:14px;letter-spacing:-.01em}
+.dcat{color:var(--mute);font-size:15px;margin-bottom:14px}
+.dquote{border-left:3px solid var(--accent);padding-left:14px;color:var(--mute);font-size:15px;font-style:italic;line-height:1.5}
+.dwitty{margin-top:16px;font-size:14px;color:var(--faint)}
+.exampletag{margin-top:16px;font-size:13px;color:var(--faint)}
+.pricing{display:flex;gap:20px;max-width:820px}
+.pricecard{flex:1;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px 28px;transition:transform .25s,box-shadow .25s}
+.pricecard:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(33,27,20,.12)}
+.pricecard.dark{background:var(--ink);color:var(--bg)}
+.pricecard.dark .pl li{color:#cfc4b3}
+.plan{font-size:15px;font-weight:800;letter-spacing:.06em;color:var(--faint)}
+.pricecard.dark .plan{color:#ffb59f}
+.amount{font-size:44px;font-weight:800;letter-spacing:-.03em;margin:8px 0 2px}
+.per{font-size:14px;color:var(--faint);margin-bottom:18px}
+.pl{list-style:none}
+.pl li{font-size:14.5px;color:var(--mute);padding:5px 0 5px 22px;position:relative}
+.pl li:before{content:'\2713';position:absolute;left:0;color:var(--accent);font-weight:800}
+.pricenote{margin-top:20px;font-size:14.5px;color:var(--faint)}
+.faq{max-width:760px}
+.q{border-bottom:1px solid var(--line);padding:20px 0}
+.q b{font-size:16.5px}
+.q p{font-size:15px;color:var(--mute);margin-top:8px;line-height:1.5}
+.finalcta{text-align:center;padding-top:90px;padding-bottom:100px}
+.finalcta h2{font-size:clamp(32px,5vw,52px);letter-spacing:-.02em;font-weight:900}
+.finalcta .micro{margin-top:16px}
+.finalcta .btnp{margin-top:26px}
+footer{border-top:1px solid var(--line);margin-top:20px}
+.foot-in{max-width:1200px;margin:0 auto;padding:26px 40px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px 24px;font-size:14px;color:var(--faint)}
+.foot-in a:hover{color:var(--ink)}
+.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1)}
+.js .reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+@media (max-width:900px){
+  .how{flex-direction:column;align-items:stretch}
+  .recall .demo{flex-direction:column;align-items:stretch;padding:30px}
+  .dcard{width:100%}
+  .pricing{flex-direction:column}
+}
+@media (max-width:640px){
+  .wrap,.nav-in,.foot-in{padding-left:20px;padding-right:20px}
+  .navlinks a:not(.navcta){display:none}
+  .hero{padding-top:44px;padding-bottom:40px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .reveal{opacity:1;transform:none;transition:none}
+  *{animation:none!important;transition:none!important}
+}
+</style>
 </head>
 <body>
-<header><div class="wrap">
-  <a class="logo" href="/">neverlos<span style="margin-left:-0.03em">e</span>awebsite<i>&bull;&bull;&bull;</i></a>
-  <nav><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="privacy.html">Privacy</a></nav>
-</div></header>
 
-<main class="wrap">
-  <section class="hero">
-    <h1>Never lose a good website again.</h1>
-    <p class="sub">Save any page in one tap, add a quick note on why you saved it, drop it in a folder, and find it again in seconds. Everything stays on your device.</p>
-    <div class="cta">
-      <a class="btn" href="https://chromewebstore.google.com/detail/neverloseawebsite/dgohoablonkihbfppaafmcgccmpkafag">Add to Chrome</a>
-      <a class="btn alt" href="#how">See how it works</a>
+<nav id="nav"><div class="nav-in">
+  <a class="logo" href="/">neverlos<span class="le">e</span>awebsite<i>&bull;&bull;&bull;</i></a>
+  <div class="navlinks">
+    <a href="#how">how it works</a>
+    <a href="#pricing">pricing</a>
+    <a href="#faq">questions</a>
+    <a href="privacy.html">privacy</a>
+    <a class="navcta" href="https://chromewebstore.google.com/detail/neverloseawebsite/dgohoablonkihbfppaafmcgccmpkafag">add to chrome</a>
+  </div>
+</div></nav>
+
+<main>
+<div class="wrap hero">
+  <div class="kicker reveal">neverloseawebsite</div>
+  <h1 class="reveal d1">never lose a website again.</h1>
+  <p class="witty reveal d2">because "i swear i saw it somewhere" is not a search strategy.</p>
+  <p class="sub reveal d3">save any page in one tap, add a quick note on why you saved it, drop it in a folder, and find it again in seconds. everything stays on your device.</p>
+  <div class="ctarow reveal d4">
+    <a class="btnp" href="https://chromewebstore.google.com/detail/neverloseawebsite/dgohoablonkihbfppaafmcgccmpkafag">add to chrome - it's free</a>
+    <a class="btns" href="#how">see how it works</a>
+  </div>
+  <p class="micro reveal d4">free: 10 saves &middot; chrome web store</p>
+</div>
+
+<div class="wrap heroimg reveal" id="heroimg">
+  <img src="save-popup.png" alt="the neverloseawebsite save popup: one tap to save a page with a note, suggested tags and a folder">
+</div>
+
+<section class="problem"><div class="wrap">
+  <div class="pk reveal">the problem</div>
+  <h2 class="reveal d1">"i swear i saw it somewhere."</h2>
+  <div class="plines">
+    <p class="reveal d1">you don't remember the url.</p>
+    <p class="reveal d2">you don't remember the title.</p>
+    <p class="reveal d3">you definitely don't remember when you saw it.</p>
+    <p class="reveal d4"><b>but you remember it was really useful.</b></p>
+  </div>
+</div></section>
+
+<section class="wrap section">
+  <h2 class="sec reveal">how it helps</h2>
+  <p class="secdesc reveal d1">bookmarks pile up unnamed. neverloseawebsite saves the page with the reason you cared.</p>
+  <div class="cards">
+    <div class="card reveal d1"><div class="ic">&#9889;</div><h3>one tap save</h3><p>click the icon or press ctrl/cmd + shift + s. title and link are captured for you.</p></div>
+    <div class="card reveal d2"><div class="ic">&#127991;&#65039;</div><h3>notes and tags</h3><p>tag it "steal this vibe" or "visual reference". tags are suggested automatically.</p></div>
+    <div class="card reveal d3"><div class="ic">&#128450;</div><h3>folders</h3><p>sort saved sites into folders like design ideas or brand portfolio.</p></div>
+    <div class="card reveal d4"><div class="ic">&#128269;</div><h3>search that gets you</h3><p>search by words from the title, note, tag or folder, and jump straight back.</p></div>
+  </div>
+</section>
+
+<section class="wrap section" id="how">
+  <h2 class="sec reveal">how it works</h2>
+  <p class="secdesc reveal d1">four steps, about five seconds per save.</p>
+  <div class="how">
+    <div class="howsteps">
+      <div class="step reveal d1"><div class="stepn">1</div><p>open a website you like.</p></div>
+      <div class="step reveal d2"><div class="stepn">2</div><p>click the neverloseawebsite icon and tap <b>lock in memory</b>.</p></div>
+      <div class="step reveal d3"><div class="stepn">3</div><p>pick a folder, or make a new one.</p></div>
+      <div class="step reveal d4"><div class="stepn">4</div><p>later, click <b>search my saved websites</b> and find it instantly.</p></div>
     </div>
-    <p class="note">Free on the Chrome Web Store.</p>
-  </section>
+    <div class="howimg reveal d2"><img src="folders.png" alt="saved websites sorted into folders, searchable by title, note, tag or folder"></div>
+  </div>
+</section>
 
-  <section class="grid">
-    <div class="card"><h3>One tap save</h3><p>Click the icon or press Ctrl/Cmd + Shift + S. The page title and link are captured for you.</p></div>
-    <div class="card"><h3>Notes and tags</h3><p>Tag it "Steal this vibe" or "Visual Reference", or type your own note. Tags are suggested automatically.</p></div>
-    <div class="card"><h3>Folders</h3><p>Sort saved sites into folders like Design ideas or Brand Portfolio.</p></div>
-    <div class="card"><h3>Search that gets you</h3><p>Search by words from the title, note, tag or folder, and jump straight back to the page.</p></div>
-  </section>
-
-  <section class="steps" id="how">
-    <h2>How it works</h2>
-    <ol>
-      <li>Open a website you like.</li>
-      <li>Click the neverloseawebsite icon and tap <b>Lock in Memory</b>.</li>
-      <li>Pick a folder, or make a new one.</li>
-      <li>Later, click <b>Search my saved websites</b> and find it instantly.</li>
-    </ol>
-  </section>
-
-  <section class="pricing" id="pricing">
-    <h2>Pricing</h2>
-    <div class="plans">
-      <div class="card plan"><b>$5</b><small>per month</small></div>
-      <div class="card plan"><b>$12</b><small>for 3 months</small></div>
-      <div class="card plan"><b>$25</b><small>per year</small></div>
+<section class="wrap section recall">
+  <div class="kicker reveal">natural recall</div>
+  <h2 class="sec reveal d1" style="font-size:clamp(32px,5vw,52px)">just ask.</h2>
+  <div class="plines" style="margin-top:22px;color:var(--mute)">
+    <p class="reveal d1">you don't need the url.</p>
+    <p class="reveal d2">you don't need the exact words.</p>
+    <p class="reveal d3">you can just... describe the thing.</p>
+  </div>
+  <div class="demo reveal">
+    <div class="dleft">
+      <p class="dq">"what was that website i found about ai music?"</p>
+      <p class="qsub">remembering... aggressively, but politely.</p>
     </div>
-    <p class="note">The first version is free to try. Paid plans are coming soon.</p>
-  </section>
+    <div class="dcard">
+      <span class="match"><span id="matchnum">0</span>% match</span>
+      <div class="found">found it.</div>
+      <div class="dname">suno</div>
+      <div class="dcat">ai music generation</div>
+      <p class="dquote">"you visited this on september 12 while researching ai music tools."</p>
+      <p class="dwitty">you can stop looking now.</p>
+    </div>
+  </div>
+  <p class="exampletag reveal">illustrative example: 98% is the match score for this search, not an overall accuracy figure.</p>
+</section>
+
+<section class="wrap section" id="pricing">
+  <h2 class="sec reveal">pricing</h2>
+  <p class="secdesc reveal d1">start free. upgrade only if you outgrow it.</p>
+  <div class="pricing">
+    <div class="pricecard reveal d1">
+      <div class="plan">free</div><div class="amount">$0</div><div class="per">current version</div>
+      <ul class="pl"><li>10 website saves</li><li>notes and auto-suggested tags</li><li>folders and instant search</li><li>everything stays on your device</li></ul>
+    </div>
+    <div class="pricecard dark reveal d2">
+      <div class="plan">pro</div><div class="amount">$5</div><div class="per">per month &middot; or $25/year</div>
+      <ul class="pl"><li>unlimited saves</li><li>everything in free</li><li>support a solo maker</li></ul>
+    </div>
+  </div>
+  <p class="pricenote reveal">the first version is free to try. paid plans are coming soon.</p>
+</section>
+
+<section class="wrap section" id="faq">
+  <h2 class="sec reveal">questions</h2>
+  <div class="faq">
+    <div class="q reveal d1"><b>where is my data stored?</b><p>everything stays on your device.</p></div>
+    <div class="q reveal d2"><b>how is this different from bookmarks?</b><p>bookmarks save a link. this saves the link plus why you saved it, and makes both searchable.</p></div>
+  </div>
+</section>
+
+<div class="wrap finalcta">
+  <h2 class="reveal">start your memory for the web.</h2>
+  <p class="micro reveal d1">free on the chrome web store. 10 saves.</p>
+  <a class="btnp reveal d2" href="https://chromewebstore.google.com/detail/neverloseawebsite/dgohoablonkihbfppaafmcgccmpkafag">add to chrome - it's free</a>
+</div>
 </main>
 
-<footer><div class="wrap">
+<footer><div class="foot-in">
   <span>&copy; 2026 neverloseawebsite</span>
-  <span><a href="privacy.html">Privacy policy</a> &nbsp;&middot;&nbsp; <a href="https://github.com/preksss1310/neverloseawebsite/issues">Contact</a></span>
+  <span><a href="privacy.html">privacy policy</a> &nbsp;&middot;&nbsp; <a href="https://github.com/preksss1310/neverloseawebsite/issues">contact</a></span>
 </div></footer>
+
+<script>
+(function(){
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var nav = document.getElementById('nav');
+  function onScrollNav(){ nav.classList.toggle('scrolled', window.scrollY > 8); }
+  window.addEventListener('scroll', onScrollNav, {passive:true}); onScrollNav();
+
+  if (reduced) {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+    var mn = document.getElementById('matchnum'); if (mn) mn.textContent = '98';
+    return;
+  }
+
+  var num = document.getElementById('matchnum');
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+    if (num) num.textContent = '98';
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold: 0.12});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  if (num) {
+    var counted = false;
+    var nio = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting && !counted) {
+          counted = true; nio.disconnect();
+          var start = null, target = 98, dur = 1100;
+          function tick(t){
+            if (!start) start = t;
+            var p = Math.min((t - start) / dur, 1);
+            var eased = 1 - Math.pow(1 - p, 3);
+            num.textContent = Math.round(eased * target);
+            if (p < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+        }
+      });
+    }, {threshold: 0.4});
+    nio.observe(num.closest('.dcard'));
+  }
+
+  var himg = document.querySelector('#heroimg img');
+  if (himg) {
+    var ticking = false;
+    function parallax(){
+      var r = himg.getBoundingClientRect();
+      if (r.bottom > 0 && r.top < window.innerHeight) {
+        var off = (r.top + r.height/2 - window.innerHeight/2) * 0.06;
+        off = Math.max(-12, Math.min(20, off));
+        himg.style.transform = 'translateY(' + off.toFixed(1) + 'px)';
+      }
+      ticking = false;
+    }
+    window.addEventListener('scroll', function(){
+      if (!ticking) { requestAnimationFrame(parallax); ticking = true; }
+    }, {passive:true});
+    parallax();
+  }
+})();
+</script>
 </body>
 </html>
